@@ -65,6 +65,12 @@
       <div class="music-section">
         <h3 style="font-family: 'Dancing Script', cursive; font-weight: 700; color: #b3369c;">music i like</h3>
         
+        <div id="lastfm-widget" style="background-color: #fff0fa; border: 2px solid #eab8e0; border-radius: 8px; padding: 12px 18px; margin-bottom: 16px; text-align: center;">
+          <p style="margin: 0; color: #888; font-size: 0.9em;">loading your current track...</p>
+        </div>
+
+        <hr style="border: none; border-top: 1px dotted #d76fb0; margin: 12px 0;">
+
         <div style="position: relative; margin-bottom: 16px;">
           <div class="music-note">
             <svg width="100px" height="100px" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -120,6 +126,38 @@
       <a href="index.html">&laquo; back home</a>
     </footer>
   </div>
+  <script>
+    // Last.fm API - Fetch current track
+    const lastfmUsername = 'Benevelynt';
+    const lastfmApiKey = '83482f6ad876142f81ff6c9ab2e916eb';
+    
+    fetch(`https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${lastfmUsername}&api_key=${lastfmApiKey}&limit=1&format=json`)
+      .then(response => response.json())
+      .then(data => {
+        const track = data.recenttracks.track[0];
+        const isNowPlaying = track['@attr'] && track['@attr'].nowplaying === 'true';
+        const trackName = track.name;
+        const artistName = track.artist['#text'];
+        const trackUrl = track.url;
+        const albumImage = track.image[track.image.length - 1]['#text'];
+        
+        let status = isNowPlaying ? '🎵 now playing' : '🎵 last played';
+        
+        const widget = document.getElementById('lastfm-widget');
+        widget.innerHTML = `
+          <p style="margin: 0 0 8px 0; color: #b3369c; font-size: 0.8em; font-weight: bold;">${status}</p>
+          <a href="${trackUrl}" target="_blank" rel="noopener" style="text-decoration: none;">
+            ${albumImage ? `<img src="${albumImage}" alt="${trackName} - ${artistName}" style="width: 100%; border-radius: 6px; border: 1px solid #eab8e0; margin-bottom: 8px; max-height: 150px;">` : ''}
+            <p style="margin: 0; font-size: 0.9em; color: #333;"><strong>${trackName}</strong><br><em style="font-size: 0.85em; color: #888;">${artistName}</em></p>
+          </a>
+        `;
+      })
+      .catch(error => {
+        console.log('Last.fm error:', error);
+        const widget = document.getElementById('lastfm-widget');
+        widget.innerHTML = '<p style="margin: 0; color: #888; font-size: 0.9em;">couldn\'t load last.fm :(</p>';
+      });
+  </script>
   <script src="oneko.js"></script>
 </body>
 </html>
