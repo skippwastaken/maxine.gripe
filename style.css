@@ -1,0 +1,243 @@
+/* ~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~ */
+/*  basic little neocities stylesheet   */
+/* ~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~ */
+
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Noto+Sans:wght@400;700&family=Commoramt&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #fdf6ff;
+  background-image:
+    linear-gradient(90deg, rgba(255,182,230,0.15) 1px, transparent 1px),
+    linear-gradient(rgba(255,182,230,0.15) 1px, transparent 1px);
+  background-size: 24px 24px;
+  color: #333;
+  font-family: "Noto Sans", sans-serif;
+}
+
+.wrapper {
+  max-width: 700px;
+  margin: 30px auto;
+  background-color: #fffafd;
+  border: 4px dotted #d76fb0;
+  border-radius: 12px;
+  padding: 25px 35px 35px 35px;
+  /*! box-shadow: 4px 4px 4px #d0a9e8; */
+}
+
+header h1 {
+  text-align: center;
+  font-size: 2.2em;
+  color: #b3369c;
+  text-shadow: 2px 2px 0px #ffd6f2;
+  margin-bottom: 5px;
+  font-family: "Dancing Script", cursive;
+  font-weight: 700;
+}
+
+header .subtitle {
+  text-align: center;
+  font-size: 0.9em;
+  color: #7a4a8f;
+  margin-top: 0;
+}
+
+nav {
+  text-align: center;
+  margin: 20px 0;
+  padding: 10px;
+  background-color: #ffe6f7;
+  border: 2px solid #d76fb0;
+  border-radius: 8px;
+}
+
+nav a {
+  margin: 0 10px;
+  color: #b3369c;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+nav a:hover {
+  text-decoration: underline;
+  color: #ff69c9;
+}
+
+h2 {
+  color: #b3369c;
+  border-bottom: 2px dotted #d76fb0;
+  padding-bottom: 4px;
+}
+
+a {
+  color: #d1348a;
+}
+
+.blinkie {
+  text-align: center;
+  font-size: 0.75em;
+  letter-spacing: 1px;
+  color: #a15fc9;
+  margin-top: 25px;
+  font-family: "Dancing Script", cursive;
+  font-weight: 700;
+}
+
+.entry {
+  background-color: #fff0fa;
+  border: 2px solid #eab8e0;
+  border-radius: 8px;
+  padding: 12px 18px;
+  margin-bottom: 16px;
+}
+
+.entry h3 {
+  margin-top: 0;
+  color: #a1358c;
+}
+
+.entry .date {
+  font-size: 0.8em;
+  color: #888;
+  margin-bottom: 8px;
+}
+
+.guestbook-post {
+  background-color: #f4f0ff;
+  border: 2px solid #cdb8ea;
+  border-radius: 8px;
+  padding: 10px 16px;
+  margin-bottom: 14px;
+}
+
+.guestbook-post .name {
+  font-weight: bold;
+  color: #6a3aa3;
+}
+
+.guestbook-post .when {
+  font-size: 0.75em;
+  color: #999;
+}
+
+form {
+  background-color: #fff0fa;
+  border: 2px dashed #d76fb0;
+  border-radius: 8px;
+  padding: 15px;
+  margin-top: 20px;
+}
+
+form label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+  color: #7a4a8f;
+}
+
+form input[type="text"],
+form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 6px;
+  margin-top: 4px;
+  border: 1px solid #d76fb0;
+  border-radius: 4px;
+  font-family: inherit;
+}
+
+form button {
+  margin-top: 12px;
+  background-color: #d76fb0;
+  color: white;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #b3369c;
+}
+
+footer {
+  text-align: center;
+  font-size: 0.75em;
+  color: #aaa;
+  margin-top: 30px;
+}
+
+hr {
+  border: none;
+  border-top: 2px dotted #d76fb0;
+  margin: 25px 0;
+}
+
+.content-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.music-section {
+  background-color: #fff0fa;
+  border: 2px solid #eab8e0;
+  border-radius: 8px;
+  padding: 16px;
+  height: fit-content;
+  position: relative;
+}
+
+.music-section h3 {
+  margin-top: 0;
+  color: #a1358c;
+}
+
+.music-section {
+  position: relative;
+}
+
+.music-note {
+  position: absolute;
+  right: -180px;
+  top: -20px;
+  width: 160px;
+  height: 160px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.music-note svg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.music-note-text {
+  position: relative;
+  z-index: 11;
+  font-size: 0.7em;
+  color: #333;
+  text-align: center;
+  width: 80%;
+  font-weight: bold;
+  line-height: 1.2;
+  top: -8px;
+  font-family: "Commoramt", cursive;
+}
+
+.music-section > div:hover .music-note {
+  opacity: 1;
+}
+
+.music-section > div:hover .music-note-2 {
+  opacity: 1;
+}
